@@ -56,12 +56,12 @@ const getUsersById = (req, res) => {
 };
 
 const postUsers = (req, res) => {
-  const { firstname, lastname, email, city, language } = req.body;
+  const { firstname, lastname, email, city, language, hashedPassword } = req.body;
 
   database
     .query(
-      "INSERT INTO users(firstname, lastname, email, city, language) VALUES (?, ?, ?, ?, ?)",
-      [firstname, lastname, email, city, language]
+      "INSERT INTO users(firstname, lastname, email, city, language, hashedPassword) VALUES (?, ?, ?, ?, ?, ?)",
+      [firstname, lastname, email, city, language, hashedPassword], 
     )
     .then(([result]) => {
       // wait for it
@@ -118,5 +118,5 @@ module.exports = {
   getUsersById,
   postUsers,
   updateUsers,
-  deleteUsers 
+  deleteUsers,
 };
